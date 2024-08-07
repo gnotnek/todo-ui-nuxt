@@ -3,10 +3,17 @@
     <h1 class="text-2xl font-bold mb-4">Todo List</h1>
     <div class="mb-4">
       <input
-        v-model="newTodo"
+        v-model="newTodo.title"
         @keyup.enter="addTodo"
         type="text"
-        placeholder="Add a new todo"
+        placeholder="Todo title"
+        class="w-full p-2 border border-gray-300 rounded-md"
+      />
+      <input
+        v-model="newTodo.description"
+        @keyup.enter="addTodo"
+        type="text"
+        placeholder="Todo description"
         class="w-full p-2 border border-gray-300 rounded-md"
       />
       <button
@@ -56,14 +63,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
-
 const todos = ref([])
 const newTodo = ref('')
 
-axios.get('http://localhost:3500/todos').then((response) => {
-  todos.value = response.data
+await useFetch('http://localhost:3500/todos', {
+  then: (data) => {
+    todos.value = data
+  }
 })
 
 const addTodo = () => {
@@ -72,7 +78,8 @@ const addTodo = () => {
   }
 
   todos.value.push({
-    text: newTodo.value,
+    title: newTodo.value,
+    description: newTodo.value,
     completed: false
   })
 
