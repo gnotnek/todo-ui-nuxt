@@ -35,6 +35,10 @@ const handleLogin = async (event) => {
         })
     })
     const data = await response.json()
+    if (data.error) {
+        alert(data.error)
+        return
+    }
     console.log(data)
     router.push('/')
 }
