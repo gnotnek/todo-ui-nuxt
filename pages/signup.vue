@@ -10,6 +10,7 @@
             
             <button type="submit">Sign Up</button>
         </form>
+        <router-link to="/">Back</router-link>
     </div>
 </template>
 

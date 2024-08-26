@@ -10,6 +10,7 @@
             
             <button type="submit">Login</button>
         </form>
+        <router-link to="/">Back</router-link>
     </div>
 </template>
 
@@ -17,9 +18,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-email = ref('')
-password = ref('')
-router = useRouter()
+const email = ref('')
+const password = ref('')
+const router = useRouter()
 
 const handleLogin = async (event) => {
     event.preventDefault()
